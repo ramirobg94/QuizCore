@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>pagina answer</h1>
+
+    <form method="get" action="/quizes/answer">
+    	Pregunta: <%= pregunta %> 
+
+    	<input type="text" name="respuesta" value="responda aqui" />
+    	<input type="submit" value="enviar">
+
+    </form>
+  </body>
+</html>
