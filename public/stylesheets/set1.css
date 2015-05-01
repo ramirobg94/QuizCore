@@ -19,6 +19,7 @@
 	background: #f0f0f0;
 	color: #aaa;
 	font-weight: bold;
+	text-align: center;
 
 	-webkit-appearance: none; /* for box shadows to show on iOS */
 }
