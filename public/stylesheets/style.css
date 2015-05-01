@@ -2,7 +2,11 @@ body {
   padding-top: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   text-align: center;
-  background-color: #80FFAA;
+  background-color: #7dffaa;
+background-image: url(/images/beige-paper.png);
+/*
+ background-image: url(/images/fondo.png);
+*/
 }
 
 a {
@@ -13,7 +17,7 @@ a {
             text-align: center;
  }
  .preguntaBox{
- 	background-color: rgba(255,255,255,0.95);
+ 	background-color: rgba(255,255,255,0.45);
  	border-style: solid;
  	border-width: 2px;
  	border-color: #333;
