@@ -27,7 +27,9 @@ padding-left: 3%;
 padding-top: 1%;
 padding-right: 3%;
 padding-bottom:1%;}
-
+.glyicon{
+	color: #000;
+}
 #h1{
 	background-color: #ffffff;
 }
