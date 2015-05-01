@@ -33,3 +33,11 @@ a {
  	max-width: 20%;
  	max-height: 20%;
  }
+
+ @media(max-width: 767px){
+ 	#h1{
+ 		display: none;
+ 	}
+
+
+ }
