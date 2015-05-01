@@ -11,7 +11,7 @@ var protocol  = (url[1] || null);
 var dialect = (url[1] || null);
 var port = (url[5] || null);
 var host = (url[4] || null);
-var storage = process.env.DATABASE_STORAGeE;
+var storage = process.env.DATABASE_STORAGE;
 
 //CARGAR modelo ORM
 var Sequelize = require('sequelize');
