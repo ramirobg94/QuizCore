@@ -7,7 +7,9 @@ var misearch;
 exports.index = function(req, res) {
 	misearch = req.query.search;
 	search = por
-	if(misearch !== null){
+	if(undefined === req.query.search){
+
+	}else{
 	misearch = misearch.replace(/[^\w]/g,por);
 	search = search.concat(misearch);
 	search = search.concat(por);
