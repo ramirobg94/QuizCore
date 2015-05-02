@@ -62,7 +62,7 @@ text-align: center;
  	max-width: 20%;
  	max-height: 20%;
  }
- #botonBusqueda{
+ .botonGly{
  	margin-top: 14px;
  }
  .cuadroBusqueda{
@@ -73,7 +73,7 @@ text-align: center;
  .inputBusqueda {
  		max-width: 100%;
  }
-  	#botonBusqueda{
+  .botonGly{
  		margin-left: 0%;
  	}
  	.cuadroBotonBusqueda{
@@ -100,11 +100,15 @@ text-align: center;
  	#h1{
  		display: none;
  	}
- 	#textoBusqueda{
+ 	.textoGly{
  		display: none;
  	}
- 	#botonBusqueda{
+ 	.botonGly{
  		min-width: 50px;
  		max-width: 70px;
  	}
+  .iconCrear{
+    font-size: 20px;
+  }
+
    }
