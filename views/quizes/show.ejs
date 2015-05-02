@@ -1,0 +1,22 @@
+    <form method="get" action="/quizes/<%= quiz.id %>/answer">
+    	<div class="col-xs-12 col-sm-offset-3 col-sm-6">	
+    	<h4>Pregunta:</h4> 
+    	<div class="col-xs-12">
+    	<div class="preguntaBox">
+    	<h1><%= quiz.pregunta %></h1>
+    	</div>
+    	</div>
+        	<div class="col-xs-12">
+    		<span class="input input--minoru">
+    			<input class="input__field input__field--minoru" type="text" name="respuesta" value="" placeholder="Respuesta" />
+    			<label class="input__label input__label--minoru" for="input+13">
+					</label>
+			</span>
+		</div>
+		<div class="col-xs-12">
+    	<div class="box bg-1">
+					<button class="button button--isi button--text-thick button--text-upper button--size-s"><span> Enviar<span class="glyphicon glyphicon-share-alt"></button>
+				</div>
+		</div>
+		</div>
+    </form>
