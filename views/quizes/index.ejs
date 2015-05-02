@@ -16,8 +16,22 @@
 </div>
 </div>
 </form>
-<table>
+
+<p> se han encontrado <%= quizes.length %> resultados</p>
+<div class="col-xs-12 preguntaBox listaPreguntas">
+<table class="tablaPreguntas">
 <% var i; var n = quizes.length; for(i=0; i < quizes.length; i++){ %>
-	<tr><td><a href="/quizes/<%= quizes[i].id %>"> <%= quizes[i].pregunta %> </a></td></tr>
+	<tr><td>
+<div class="col-xs-12">
+    	   	<p>
+		<a href="/quizes/<%= quizes[i].id %>"> <%= quizes[i].pregunta %> </a>
+</p>
+<% if (i !== (quizes.length -1 )){%>
+<hr class="separador">
+<% } %>
+</div>
+
+	</td></tr>
 <% } %>
 </table>
+</div>
