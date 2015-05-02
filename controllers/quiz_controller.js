@@ -1,8 +1,22 @@
 var models = require('../models/models.js');
+var por = '%';
+var search;
+var misearch;
 
 //Get /quizes/index
 exports.index = function(req, res) {
-	models.Quiz.findAll().then(function(quizes){
+	misearch = req.query.search;
+	search = por
+	if(misearch !== null){
+	misearch = misearch.replace(/[^\w]/g,por);
+	search = search.concat(misearch);
+	search = search.concat(por);
+	}
+
+	models.Quiz.findAll({
+		where:["pregunta like ?", search],
+		order:'`pregunta` ASC'
+		}).then(function(quizes){
 		res.render('quizes/index.ejs', {quizes: quizes});
 	})
 };

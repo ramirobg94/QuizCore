@@ -1,6 +1,6 @@
 <form method="get" action="/quizes">
 <div class="col-xs-12">
-<div class="row">
+	<div class="row">
  <div class="col-xs-6 col-xs-offset-2 col-md-offset-2 col-md-8 cuadroBusqueda">
     		<span class="input input--minoru inputBusqueda">
     			<input class="input__field input__field--minoru" type="text" name="search" value="" placeholder="Busqueda" />
@@ -10,14 +10,12 @@
 		</div>
 		<div class="col-xs-2 cuadroBotonBusqueda">
     	   <div class="box bg-1">
-					<button class="button button--isi button--text-thick button--text-upper button--size-s button-busqueda" id="botonBusqueda"><span> <span id="textoBusqueda">Buscar</span> <span class="glyphicon glyphicon-search"></button>
+					<button class="button button--isi button--text-thick button--text-upper button--size-s button-busqueda" id="botonBusqueda"><span> <span id="textoBusqueda">Buscar </span>  <span class="glyphicon glyphicon-search"></button>
 			</div>
 		</div>
 </div>
 </div>
 </form>
-
-
 <table>
 <% var i; var n = quizes.length; for(i=0; i < quizes.length; i++){ %>
 	<tr><td><a href="/quizes/<%= quizes[i].id %>"> <%= quizes[i].pregunta %> </a></td></tr>
