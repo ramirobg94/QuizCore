@@ -50,6 +50,23 @@ padding-bottom:1%;}
  	max-width: 20%;
  	max-height: 20%;
  }
+ #botonBusqueda{
+ 	margin-top: 14px;
+ }
+ .cuadroBusqueda{
+ 		margin-right: 0%;
+ 		padding-right: 0%;
+ 		vertical-align: left;
+ }
+ .inputBusqueda {
+ 		max-width: 100%;
+ }
+  	#botonBusqueda{
+ 		margin-left: 0%;
+ 	}
+ 	.cuadroBotonBusqueda{
+ 		margin-left: 0%;
+ 	}
 @media(max-width: 992px){
 	 	.apellidos > h2 {
  		font-size: 26px;
@@ -62,4 +79,11 @@ padding-bottom:1%;}
  	#h1{
  		display: none;
  	}
-  }
+ 	#textoBusqueda{
+ 		display: none;
+ 	}
+ 	#botonBusqueda{
+ 		min-width: 50px;
+ 		max-width: 70px;
+ 	}
+   }
