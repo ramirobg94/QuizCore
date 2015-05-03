@@ -20,4 +20,13 @@
 		</div>
 		</div>
     </form>
+
+<p><a href="/quizes/<%=quiz.id %>/comments/new"><button>Nuevo comentario</button></a></p>
+
+<p>Comentarios:</p>
+<%for(index in quiz.Comments) {%>
+    <p>-<%=quiz.Comments[0].texto%></p>
+<%}%>
+
+
     <a href="/quizes"> Volver</a>
