@@ -78,7 +78,7 @@ exports.index = function(req, res, next) {
 
 	}else{
 	misearch = misearch.replace(/[^\w]/g,por);
-	search = search.concat(misearch);
+	search = misearch;
 	search = search.concat(por);
 	}
 
