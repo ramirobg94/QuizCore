@@ -140,4 +140,15 @@ margin-bottom: 0%;
   margin-left: 2%;
   margin-bottom: 1%;
 }
+.preguntaBox{
+  font-size: 12px;
+}
+
+}
+
+ @media(max-width: 350px){
+.botonGly{
+  width: 3px;
+}
+
 }
