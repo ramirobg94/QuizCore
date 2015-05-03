@@ -23,10 +23,10 @@
 <% var i; var n = quizes.length; for(i=0; i < quizes.length; i++){ %>
 	<tr>
 		<div class="col-xs-12">
-			<td><a href="/quizes/<%= quizes[i].id %>"> <%= quizes[i].pregunta %> </a></td>
+			<td>   	<div class="preguntaBox preguntaBoxIndex"><a href="/quizes/<%= quizes[i].id %>"> <%= quizes[i].pregunta %> </a></td></div>
 			<td><a href="quizes/<%= quizes[i].id %>/edit">
  				<div class="box bg-1"> 
-					<button class="button button--isi button--text-thick button--text-upper button--size-s button-busqueda botonGly"><span> <span class="textoGly">editar </span>  <span class="glyicon glyphicon glyphicon-search"></button>
+					<button class="button button--isi button--text-thick button--text-upper button--size-s button-busqueda botonGly"><span> <span class="textoGly">editar </span>  <span class="glyicon glyphicon glyphicon-pencil"></button>
 			</div>
 
 			</a></td>

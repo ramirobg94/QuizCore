@@ -30,6 +30,12 @@ padding-bottom:1%;
 text-align: center;
 margin-bottom: 0%;
 }
+.preguntaBoxIndex{
+  width: 95%;
+  height: 42px;
+  position: relative;
+  margin-top: 5px;
+}
 .listaPreguntas{
   width: 80%;
   margin-left: 10%;
@@ -97,6 +103,12 @@ margin-bottom: 0%;
 	 	.apellidos > h2 {
  		font-size: 26px;
  	}
+    .preguntaBoxIndex{
+  width: 95%;
+  height: 42px;
+  position: relative;
+  margin: 14px 0% 0% 2%;
+}
 
 }
 
@@ -115,5 +127,11 @@ margin-bottom: 0%;
   .iconCrear{
     font-size: 20px;
   }
+  .preguntaBoxIndex{
+  width: 95%;
+  height: 42px;
+  position: relative;
+  margin: 3px 0% 0% 2%;
+}
 
    }
