@@ -75,15 +75,17 @@ exports.index = function(req, res, next) {
 	misearch = req.query.search;
 	search = por
 	if(undefined === req.query.search){
+		misearch = '.'
 
 	}else{
 	misearch = misearch.replace(/[^\w]/g,por);
 	search = search.concat(misearch);
 	search = search.concat(por);
+	misearch = ' para "' + misearch +'".';
 	}
 
 	models.Quiz.findAll({
-		where:["pregunta ilike ?", search],
+		where:["pregunta ilike ?", search], //ilike es case-INsensitive frente a like !! extension de postgreSQL
 		order:'pregunta ASC'
 		}).then(function(quizes){
 		res.render('quizes/index.ejs', {quizes: quizes, errors: [], misearch: misearch, search: search});
