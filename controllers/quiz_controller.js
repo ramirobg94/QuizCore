@@ -51,6 +51,7 @@ exports.update = function(req, res){
 );
 };
 
+
 //Autoload - factoriza el codigo si ruta incluye :quizId
 exports.load = function(req, res, next, quizId){
 	models.Quiz.find(quizId).then(
