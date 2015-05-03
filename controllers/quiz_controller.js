@@ -71,7 +71,7 @@ exports.load = function(req, res, next, quizId){
 };
 
 //Get /quizes/index
-exports.index = function(req, res) {
+exports.index = function(req, res, next) {
 	misearch = req.query.search;
 	search = por
 	if(undefined === req.query.search){
