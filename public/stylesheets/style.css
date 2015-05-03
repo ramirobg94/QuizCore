@@ -133,5 +133,11 @@ margin-bottom: 0%;
   position: relative;
   margin: 3px 0% 0% 2%;
 }
-
-   }
+}
+ @media(max-width: 400px){
+.listaPreguntas{
+  width: 96%;
+  margin-left: 2%;
+  margin-bottom: 1%;
+}
+}
