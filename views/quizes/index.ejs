@@ -21,17 +21,22 @@
 <div class="col-xs-12 preguntaBox listaPreguntas">
 <table class="tablaPreguntas">
 <% var i; var n = quizes.length; for(i=0; i < quizes.length; i++){ %>
-	<tr><td>
-<div class="col-xs-12">
-    	   	<p>
-		<a href="/quizes/<%= quizes[i].id %>"> <%= quizes[i].pregunta %> </a>
-</p>
+	<tr>
+		<div class="col-xs-12">
+			<td><a href="/quizes/<%= quizes[i].id %>"> <%= quizes[i].pregunta %> </a></td>
+			<td><a href="quizes/<%= quizes[i].id %>/edit">
+ 				<div class="box bg-1"> 
+					<button class="button button--isi button--text-thick button--text-upper button--size-s button-busqueda botonGly"><span> <span class="textoGly">editar </span>  <span class="glyicon glyphicon glyphicon-search"></button>
+			</div>
+
+			</a></td>
+		</div>
+		<!--
 <% if (i !== (quizes.length -1 )){%>
 <hr class="separador">
 <% } %>
-</div>
-
-	</td></tr>
+-->
+</tr>
 <% } %>
 </table>
 </div>

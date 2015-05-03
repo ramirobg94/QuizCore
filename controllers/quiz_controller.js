@@ -9,22 +9,46 @@ exports.new = function(req,res){
 		{pregunta: "Pregunta", respuesta: "Respuesta"}
 		);
 
-	res.render('quizes/new', {quiz: quiz});
+	res.render('quizes/new', {quiz: quiz, errors: []});
 };
 // POST /quizes/create
 exports.create = function(req, res) {
 	var quiz = models.Quiz.build( req.body.quiz);
-
-	if((req.body.quiz.pregunta === "") || (req.body.quiz.respuesta === "")){
-		res.redirect('/quizes')
-	}else{
-
+	quiz.validate().then(function(err){
+		if(err){
+			res.render('quizes/new',{quiz: quiz, errors: err.errors});
+		}else{
 	//Guarda en la DB los campos pregunta y respuesta de quiz
-	quiz.save({fields: ["pregunta", "respuesta"]}).then(function(){
-		res.redirect('/quizes');
-
-	}) //REdireccion HTTP (URL relativo) lista e preguntas
+	quiz.save({fields: ["pregunta", "respuesta"]})
+	.then(function(){res.redirect('/quizes');}) 
+	//REdireccion HTTP (URL relativo) lista e preguntas
 	}
+		}
+	);
+};
+
+//POST /quizes/:id/edit
+exports.edit = function(req,res){
+	var quiz = req.quiz;
+	res.render('quizes/edit',{quiz: quiz, errors: []});
+};
+
+// PUT /quizes/:id
+exports.update = function(req, res){
+	req.quiz.pregunta = req.body.quiz.pregunta;
+	req.quiz.respuesta = req.body.quiz.respuesta;
+
+	req.quiz.validate().then(function(err){
+		if(err) {
+			res.render('quizes/edit',{quiz: req.quiz, errors: err.errors});
+		}else{
+			//Guarda en la DB los campos pregunta y respuesta de quiz
+	req.quiz.save({fields: ["pregunta", "respuesta"]})
+	.then(function(){res.redirect('/quizes');}) 
+	//REdireccion HTTP (URL relativo) lista e preguntas
+		}
+	}
+);
 };
 
 //Autoload - factoriza el codigo si ruta incluye :quizId
@@ -55,7 +79,7 @@ exports.index = function(req, res) {
 		where:["pregunta like ?", search],
 		order:'`pregunta` ASC'
 		}).then(function(quizes){
-		res.render('quizes/index.ejs', {quizes: quizes});
+		res.render('quizes/index.ejs', {quizes: quizes, errors: []});
 	}).catch(function(error){next(error);})
 };
 
@@ -63,7 +87,7 @@ exports.index = function(req, res) {
 //GEt /quizes/:id
 exports.show = function(req,res) {
 	models.Quiz.find(req.params.quizId).then(function(quiz){
-		res.render('quizes/show' , {quiz: req.quiz});
+		res.render('quizes/show' , {quiz: req.quiz, errors: []});
 	})
 };
 
@@ -73,5 +97,5 @@ exports.answer = function(req,res) {
 		if(req.query.respuesta.toLowerCase() === req.quiz.respuesta.toLowerCase()){
 			resultado = 'Correcto';
 		} 
-		res.render('quizes/answer',	{quiz: req.quiz, respuesta: resultado});
+		res.render('quizes/answer',	{quiz: req.quiz, respuesta: resultado, errors: []});
 };

@@ -1,0 +1,12 @@
+<h4>Edite pregunta:</h4>
+<form method="post" action="/quizes/<%= quiz.id %>?_method=put">
+	<% include _form.ejs %>
+</form>
+<div class="col-xs-12 col-sm-offset-3 col-sm-6">	
+	<div class="col-xs-6 col-xs-offset-3">
+       <a href="/quizes"> <div class="box bg-1">
+					<button type="submit" class="button button--isi button--text-thick button--text-upper button--size-s botonGly"><span  class="textoGly" > Cancelar </span>  <span class="glyphicon glyphicon-remove-sign iconCrear"></button>
+		</div>
+		</a>
+	</div>
+</div>

@@ -88,6 +88,10 @@ margin-bottom: 0%;
   #f1 > h3{
     font-size: 10px;
   }
+  #ErrorMsgs{
+    color: #f61;
+    font-size: 10px ;}
+  }
 
 @media(max-width: 992px){
 	 	.apellidos > h2 {
