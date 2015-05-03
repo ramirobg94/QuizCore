@@ -90,7 +90,6 @@ exports.index = function(req, res) {
 	}).catch(function(error){next(error);})
 };
 
-
 //GEt /quizes/:id
 exports.show = function(req,res) {
 	models.Quiz.find(req.params.quizId).then(function(quiz){
