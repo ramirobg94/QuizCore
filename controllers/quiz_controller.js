@@ -78,12 +78,12 @@ exports.index = function(req, res, next) {
 
 	}else{
 	misearch = misearch.replace(/[^\w]/g,por);
-	search = misearch;
+	search = search.concat(misearch);
 	search = search.concat(por);
 	}
 
 	models.Quiz.findAll({
-		where:["pregunta like ?", search],
+		where:["pregunta ilike ?", search],
 		order:'pregunta ASC'
 		}).then(function(quizes){
 		res.render('quizes/index.ejs', {quizes: quizes, errors: [], misearch: misearch, search: search});
