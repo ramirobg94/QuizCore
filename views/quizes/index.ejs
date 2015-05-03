@@ -23,19 +23,37 @@
 <% var i; var n = quizes.length; for(i=0; i < quizes.length; i++){ %>
 	<tr>
 		<div class="col-xs-12">
+			<div class="row">
+				<div class="col-xs-12 col-sm-8">
 			<td>   	<div class="preguntaBox preguntaBoxIndex"><a href="/quizes/<%= quizes[i].id %>"> <%= quizes[i].pregunta %> </a></td></div>
+			<div class="col-xs-6 col-sm-2">
 			<td><a href="quizes/<%= quizes[i].id %>/edit">
  				<div class="box bg-1"> 
 					<button class="button button--isi button--text-thick button--text-upper button--size-s button-busqueda botonGly"><span> <span class="textoGly">editar </span>  <span class="glyicon glyphicon glyphicon-pencil"></button>
 			</div>
 
 			</a></td>
+			<div class="col-xs-6 col-sm-2">
+			<td>
+				<form method="post" action="quizes/<%= quizes[i].id %>?_method=delete">
+					<div class="box bg-1"> 
+					<button type="submit" onClick="return confirm('Borrar: <%= quizes[i].pregunta %>')" class="button button--isi button--text-thick button--text-upper button--size-s button-busqueda botonGly"><span> <span class="textoGly">borrar </span>  <span class=" glyphicon glyphicon-trash"></button>
+			</div>
+
+
+
+				</form>
+			</td>
+		</div>
+		</div>
+		</div>
 		</div>
 		<!--
 <% if (i !== (quizes.length -1 )){%>
 <hr class="separador">
 <% } %>
 -->
+</div>
 </tr>
 <% } %>
 </table>
