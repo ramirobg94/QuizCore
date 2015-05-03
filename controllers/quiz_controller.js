@@ -86,7 +86,7 @@ exports.index = function(req, res, next) {
 		where:["pregunta like ?", search],
 		order:'pregunta ASC'
 		}).then(function(quizes){
-		res.render('quizes/index.ejs', {quizes: quizes, errors: []});
+		res.render('quizes/index.ejs', {quizes: quizes, errors: [], misearch: misearch, search: search});
 	}).catch(function(error){next(error);});
 };
 
