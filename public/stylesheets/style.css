@@ -127,9 +127,10 @@ padding: 0%;
 
 
  @media(max-width: 767px){
- 	#h1{
+/* 	#h1{
  		display: none;
  	}
+  */
  	.textoGly{
  		display: none;
  	}
