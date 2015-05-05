@@ -3,15 +3,27 @@
 <form method="POST" action='/login'>
 	<div class="field">
 		<label for="login">Login:</label><br />
-		<input type="text" id="login" name="login" size="30" />
+		<span class="input input--minoru">
+   			<input class="input__field input__field--minoru"  value="" placeholder="Escriba su nombre" type="text" id="login" name="login"/>
+   			<label class="input__label input__label--minoru" for="login">
+					</label>
+		</span>
 	</div>	
 	<div class="field">
 		<label for="password">password:</label><br />
-		<input type="password" id="password" name="password" size="30" />
+		<span class="input input--minoru">
+   			<input class="input__field input__field--minoru"  value="" placeholder="Escriba su nombre" type="password" id="password" name="password"/>
+   			<label class="input__label input__label--minoru" for="password">
+					</label>
+		</span>
 	</div>
 
 	<div class="actions">
-		<input name="commit" type="submit" value="Login" />
+
+
+		  <div class="box bg-1">
+					<button name="commit" type="submit" value="Login" class="button button--isi button--text-thick button--text-upper button--size-s botonGly botonGlyG"><span  class="textoGly"> Login </span> <span class="glyphicon glyphicon-ok-sign iconCrear"></span></button>
+		</div>
 	</div>
 
 </form>

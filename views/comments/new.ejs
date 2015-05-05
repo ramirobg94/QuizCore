@@ -1,6 +1,18 @@
-Añadir comentario a <%=quizId %>
-
 <form method="post" action="/quizes/<%=quizId%>/comments/">
-<input type="text" id="comment" name="comment[texto]" value="" /> <p>
-<button type="submit">Enviar</button>
+<div class="col-xs-12 col-sm-12">	
+   	<h4>Añadir comentario a <%=quizId %></h4> 
+
+   	<div class="col-xs-12">
+   		<span class="input input--minoru">
+   			<input class="input__field input__field--minoru" type="text" name="comment[texto]" value="" placeholder="Escriba su comentario" id="comment"/>
+   			<label class="input__label input__label--minoru" for="comment">
+					</label>
+			</span>
+	</div>
+	<div class="col-xs-12">
+    	<div class="box bg-1">
+			<button class="button button--isi button--text-thick button--text-upper button--size-s"><span> Enviar comentatio<span class=" glyphicon glyphicon-send"></button>
+		</div>
+	</div>
+</div>
 </form>
