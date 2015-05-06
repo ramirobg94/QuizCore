@@ -2,6 +2,7 @@ var models = require('../models/models.js');
 var por = '%';
 var search;
 var misearch;
+var c = 0;
 
 //GET /quizes/new
 exports.new = function(req,res){
@@ -91,7 +92,7 @@ exports.index = function(req, res, next) {
 	}
 
 	models.Quiz.findAll({
-		where:["pregunta ilike ?", search], //ilike es case-INsensitive frente a like !! extension de postgreSQL
+		where:["pregunta like ?", search], //ilike es case-INsensitive frente a like !! extension de postgreSQL
 		order:'pregunta ASC'
 		}).then(function(quizes){
 		res.render('quizes/index.ejs', {quizes: quizes, errors: [], misearch: misearch, search: search});
@@ -113,3 +114,39 @@ exports.answer = function(req,res) {
 		} 
 		res.render('quizes/answer',	{quiz: req.quiz, respuesta: resultado, errors: []});
 };
+
+//Get /quizes/statistics
+exports.statistics = function(req,res){
+
+	models.Quiz.count().then(function(nP){
+
+		 models.Comment.count().then(function(nC){
+		 	var media = nC / nP;
+		 	var nPcC = 0;
+
+		 	models.Quiz.count(
+		 		{ where: ["quiz.Comments NOT LIKE ?","*"], 
+				include: [{model: models.Comment }]}
+		 		).then(function(nPcC){
+		 		console.log("hay" + nPcC + "con comentarios alsaask")
+		 	})
+
+
+		 res.render('quizes/statistics',{errors: [], nP: nP, nC: nC, media: media.toFixed(2),nPcC: nPcC});
+		});
+});
+};
+/*
+function contarComentarios(){
+	models.Comment.count().then(function(nc){
+		 c = nc;
+	});
+	return c ;
+};
+function contarPreguntas(){
+	models.Quiz.count().then(function(q){
+		 c = q;
+	});
+	return c ;
+};
+*/

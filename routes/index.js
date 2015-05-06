@@ -32,4 +32,6 @@ router.delete('/quizes/:quizId(\\d+)',		quizController.destroy);
 router.get('/quizes/:quizId(\\d+)/comments/new',	commentController.new);
 router.post('/quizes/:quizId(\\d+)/comments',		commentController.create);
 
+//Definicion de ruta de estadisticas de quizes
+router.get('/quizes/statistics',			quizController.statistics);
 module.exports = router;
