@@ -93,7 +93,10 @@ exports.index = function(req, res, next) {
 
 	models.Quiz.findAll({
 		where:["pregunta like ?", search], //ilike es case-INsensitive frente a like !! extension de postgreSQL
-		order:'pregunta ASC'
+		order:'pregunta ASC',
+		include: [{
+		 model: models.Comment 
+		}]
 		}).then(function(quizes){
 		res.render('quizes/index.ejs', {quizes: quizes, errors: [], misearch: misearch, search: search});
 	}).catch(function(error){next(error);});
@@ -122,17 +125,17 @@ exports.statistics = function(req,res){
 
 		 models.Comment.count().then(function(nC){
 		 	var media = nC / nP;
-		 	var nPcC = 0;
 
 		 	models.Quiz.count(
-		 		{ where: ["quiz.Comments NOT LIKE ?","*"], 
-				include: [{model: models.Comment }]}
+		 		{ distinct:"Comments.QuizId",
+		 		where: ["Comments.QuizId not like ?", "NULL"],
+		 		include: [models.Comment]}
 		 		).then(function(nPcC){
-		 		console.log("hay" + nPcC + "con comentarios alsaask")
-		 	})
-
-
-		 res.render('quizes/statistics',{errors: [], nP: nP, nC: nC, media: media.toFixed(2),nPcC: nPcC});
+		 		console.log("hay" + nPcC + "con comentarios alsaask");	 		
+		 		var nPsC = nP - nPcC;
+		 		console.log("hay" + nPsC + "sin comentarios alsaask");
+		 		res.render('quizes/statistics',{errors: [], nP: nP, nC: nC, media: media.toFixed(2),nPcC: nPcC, nPsC: nPsC});
+		 	});
 		});
 });
 };
