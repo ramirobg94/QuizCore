@@ -134,10 +134,19 @@ exports.statistics = function(req,res){
 		 //		console.log("hay" + nPcC + "con comentarios alsaask");	 		
 		 //		var nPsC = nP - nPcC;
 		 //		console.log("hay" + nPsC + "sin comentarios alsaask");
-		 		res.render('quizes/statistics',{errors: [], nP: nP, nC: nC, media: media.toFixed(2)
-		 	//		,nPcC: nPcC, nPsC: nPsC
+
+
+ 			models.Comment.count({ distinct:"QuizId",
+		 	where: ["QuizId not like ?", "NULL"]
+		 	}
+			).then(function(nPcC){
+		 	console.log("hay" + nPcC + "con comentarios alsaask");	 		
+		 	var nPsC = nP - nPcC;
+		 	console.log("hay" + nPsC + "sin comentarios alsaask");
+		 		 		res.render('quizes/statistics',{errors: [], nP: nP, nC: nC, media: media.toFixed(2)
+		 		,nPcC: nPcC, nPsC: nPsC
 		 		});
-		 //	});
+		 });
 		});
 });
 };
