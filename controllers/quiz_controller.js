@@ -92,7 +92,7 @@ exports.index = function(req, res, next) {
 	}
 
 	models.Quiz.findAll({
-		where:["pregunta ilike ?", search], //ilike es case-INsensitive frente a like !! extension de postgreSQL
+		where:["pregunta like ?", search], //ilike es case-INsensitive frente a like !! extension de postgreSQL
 		order:'pregunta ASC',
 		include: [{
 		 model: models.Comment 
@@ -126,30 +126,20 @@ exports.statistics = function(req,res){
 		 models.Comment.count().then(function(nC){
 		 	var media = nC / nP;
 
-		 //	models.Quiz.count(
-		 //		{ distinct:"Comments.QuizId",
-		 //		where: ["Comments.QuizId not like ?", "NULL"],
-		 //		include: [models.Comment]}
-		 //		).then(function(nPcC){
-		 //		console.log("hay" + nPcC + "con comentarios alsaask");	 		
-		 //		var nPsC = nP - nPcC;
-		 //		console.log("hay" + nPsC + "sin comentarios alsaask");
-
-
- 			models.Comment.count({ distinct:"QuizId",
-		 	where: ["QuizId not like ?", "NULL"]
-		 	}
-			).then(function(nPcC){
-		 	console.log("hay" + nPcC + "con comentarios alsaask");	 		
-		 	var nPsC = nP - nPcC;
-		 	console.log("hay" + nPsC + "sin comentarios alsaask");
-		 		 		res.render('quizes/statistics',{errors: [], nP: nP, nC: nC, media: media.toFixed(2)
-		 		,nPcC: nPcC, nPsC: nPsC
-		 		});
-		 });
+		 	models.Quiz.count({
+		 		where: ["Comments.QuizId not like ?", "NULL"],
+		 		distinct:"Comments.QuizId",
+		 		include: [models.Comment]}
+		 	).then(function(nPcC){
+		 		console.log("hay" + nPcC + "con comentarios alsaask");	 		
+		 		var nPsC = nP - nPcC;
+		 		console.log("hay" + nPsC + "sin comentarios alsaask");
+		 		res.render('quizes/statistics',{errors: [], nP: nP, nC: nC, media: media.toFixed(2),nPcC: nPcC, nPsC: nPsC});
+			});
 		});
-});
+	});
 };
+
 /*
 function contarComentarios(){
 	models.Comment.count().then(function(nc){
