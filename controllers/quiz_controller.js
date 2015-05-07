@@ -121,11 +121,12 @@ exports.answer = function(req,res) {
 //Get /quizes/statistics
 exports.statistics = function(req,res){
 
+console.log("a");
 	models.Quiz.count().then(function(nP){
-
+			console.log("b");
 		 models.Comment.count().then(function(nC){
 		 	var media = nC / nP;
-
+		 		console.log("media");
 		 	models.Quiz.count({
 		 		where: ["Comments.QuizId not like ?", "NULL"],
 		 		distinct:"Comments.QuizId",
