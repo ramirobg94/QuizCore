@@ -126,16 +126,18 @@ exports.statistics = function(req,res){
 		 models.Comment.count().then(function(nC){
 		 	var media = nC / nP;
 
-		 	models.Quiz.count(
-		 		{ distinct:"Comments.QuizId",
-		 		where: ["Comments.QuizId not like ?", "NULL"],
-		 		include: [models.Comment]}
-		 		).then(function(nPcC){
-		 		console.log("hay" + nPcC + "con comentarios alsaask");	 		
-		 		var nPsC = nP - nPcC;
-		 		console.log("hay" + nPsC + "sin comentarios alsaask");
-		 		res.render('quizes/statistics',{errors: [], nP: nP, nC: nC, media: media.toFixed(2),nPcC: nPcC, nPsC: nPsC});
-		 	});
+		 //	models.Quiz.count(
+		 //		{ distinct:"Comments.QuizId",
+		 //		where: ["Comments.QuizId not like ?", "NULL"],
+		 //		include: [models.Comment]}
+		 //		).then(function(nPcC){
+		 //		console.log("hay" + nPcC + "con comentarios alsaask");	 		
+		 //		var nPsC = nP - nPcC;
+		 //		console.log("hay" + nPsC + "sin comentarios alsaask");
+		 		res.render('quizes/statistics',{errors: [], nP: nP, nC: nC, media: media.toFixed(2)
+		 	//		,nPcC: nPcC, nPsC: nPsC
+		 		});
+		 //	});
 		});
 });
 };
