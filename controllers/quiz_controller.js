@@ -128,9 +128,25 @@ exports.statistics = function(req,res){
 
 		 	models.Quiz.count(
 		 	{ 
+//errror
+/*
+server no funciona:
+Executing (default): SELECT count(DISTINCT("Quiz"."id")) AS "count" FROM "Quizzes" AS "Quiz" LEFT OUTER JOIN 
+"Comments" AS "Comments" ON "Quiz"."id" = "Comments"."QuizId" WHERE Comments.QuizId not like 'NULL';
+ Executing (default): SELECT count(*) AS "count" FROM "Comments" AS "Comment";
+
+Unhandled rejection SequelizeDatabaseError: missing FROM-clause entry for table "comments"
+
+en local:(funciona)
+Executing (default): SELECT count(DISTINCT(`Quiz`.`id`)) AS `count` FROM `Quizzes` AS `Quiz` LEFT OUTER JOIN 
+`Comments` AS `Comments` ON `Quiz`.`id` = `Comments`.`QuizId` WHERE Comments.QuizId not like 'NULL';
+
+*/
+
+
 		 		distinct: true,
 		 		//distinct:"Comments.QuizId",
-		 	where: ["Comments.QuizId not like ?", "NULL"],
+		 	where: ["Comments.QuizId like ?", "*"],
 		 		
 		 		include: [models.Comment]}
 		 		).then(function(nPcC){
