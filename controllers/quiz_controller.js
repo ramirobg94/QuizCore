@@ -146,7 +146,7 @@ Executing (default): SELECT count(DISTINCT(`Quiz`.`id`)) AS `count` FROM `Quizze
 
 		 		distinct: true,
 		 		//distinct:"Comments.QuizId",
-		 	where: ["Comments.QuizId like ?", "*"],
+		 	where: ["QuizId as Comments like ?", "*"],
 		 		
 		 		include: [models.Comment]}
 		 		).then(function(nPcC){
