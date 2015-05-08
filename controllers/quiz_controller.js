@@ -127,8 +127,11 @@ exports.statistics = function(req,res){
 		 	var media = nC / nP;
 
 		 	models.Quiz.count(
-		 	{ distinct:"Comments.QuizId",
+		 	{ 
+		 		distinct: true,
+		 		//distinct:"Comments.QuizId",
 		 	where: ["Comments.QuizId not like ?", "NULL"],
+		 		
 		 		include: [models.Comment]}
 		 		).then(function(nPcC){
 		 		console.log("hay" + nPcC + "con comentarios alsaask");	 		
