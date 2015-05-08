@@ -151,7 +151,7 @@ exports.statistics = function(req,res){
 		 	var media = nC / nP;
 		 	
 		 	models.Comment.count(
-		 		{ distinct:["Comments.QuizId"],
+		 		{// distinct:["Comments.QuizId"],
 		 		  where: ["QuizId not like ?", "NULL"]}
 		 		).then(function(nPcC){
 			 		console.log("hay" + nPcC + "con comentarios alsaask");	 		
