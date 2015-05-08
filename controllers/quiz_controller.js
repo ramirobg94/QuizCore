@@ -145,7 +145,7 @@ Executing (default): SELECT count(DISTINCT(`Quiz`.`id`)) AS `count` FROM `Quizze
 
 
 		 		//DISTINCT: "Comments.QuizId",
-		 		distinct:{"Comments.QuizId"},
+		 		distinct:"Comments.QuizId",
 		 		//unique:"Comments.QuizId",
 		 	where: {"Comments.QuizId not like ?", "NULL"},
 		 		
