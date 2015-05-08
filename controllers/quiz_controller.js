@@ -122,7 +122,6 @@ exports.answer = function(req,res) {
 exports.statistics = function(req,res){
 
 /*Funciona en Local 
-	
 	----------------------
 
 	models.Quiz.count().then(function(nP){
@@ -149,10 +148,10 @@ exports.statistics = function(req,res){
 	models.Quiz.count().then(function(nP){
 		 models.Comment.count().then(function(nC){
 		 	var media = nC / nP;
-		 	
-		 	models.Comment.count(
-		 		{// distinct:["Comments.QuizId"],
-		 		  where: ["QuizId not like ?", "NULL"]}
+		 models.Quiz.count(
+		 		{ distinct:"Comments.QuizId true",
+		 		  where: ["Comments.QuizId not like ?", "NULL"],
+		 		  include: [models.Comment]}
 		 		).then(function(nPcC){
 			 		console.log("hay" + nPcC + "con comentarios alsaask");	 		
 			 		var nPsC = nP - nPcC;
