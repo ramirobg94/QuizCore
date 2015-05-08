@@ -149,7 +149,9 @@ exports.statistics = function(req,res){
 		 models.Comment.count().then(function(nC){
 		 	var media = nC / nP;
 		 models.Quiz.count(
-		 		{ distinct:"Comments.QuizId true",
+		 		{ 
+		 			//select
+		 			distinct:"Comments.QuizId true",
 		 		  where: ["Comments.QuizId not like ?", "NULL"],
 		 		  include: [models.Comment]}
 		 		).then(function(nPcC){
