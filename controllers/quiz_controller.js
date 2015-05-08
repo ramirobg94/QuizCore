@@ -121,28 +121,49 @@ exports.answer = function(req,res) {
 //Get /quizes/statistics
 exports.statistics = function(req,res){
 
-	models.Quiz.count().then(function(nP){
+/*Funciona en Local 
+	
+	----------------------
 
+	models.Quiz.count().then(function(nP){
 		 models.Comment.count().then(function(nC){
 		 	var media = nC / nP;
-
 		 	models.Quiz.count(
-		 		{distinct:'Comments.QuizId',
-		 		 where: {'Comments.QuizId notlike ?', 'NULL'},
-		 		 include: models.Comment}
+		 		{ distinct:"Comments.QuizId",
+		 		  where: ["Comments.QuizId not like ?", "NULL"],
+		 		  include: [models.Comment]}
 		 		).then(function(nPcC){
-		 		console.log("hay" + nPcC + "con comentarios alsaask");	 		
-		 	var nPsC = nP - nPcC;
-		 		console.log("hay" + nPsC + "sin comentarios alsaask");
-
-console.log(media);
- 			
-		 		 		res.render('quizes/statistics',{errors: [], nP: nP, nC: nC, media: media.toFixed(2)
-		 		,nPcC: nPcC, nPsC: nPsC
-		 		});
-		 });
+			 		console.log("hay" + nPcC + "con comentarios alsaask");	 		
+			 		var nPsC = nP - nPcC;
+			 		console.log("hay" + nPsC + "sin comentarios alsaask");
+					console.log(media);
+	 				res.render('quizes/statistics',{errors: [], nP: nP, nC: nC, media: media.toFixed(2),nPcC: nPcC, nPsC: nPsC});
+		 			});
 		});
-});
+	});
+
+	------------------------
+*/
+
+
+	models.Quiz.count().then(function(nP){
+		 models.Comment.count().then(function(nC){
+		 	var media = nC / nP;
+		 	
+		 	models.Comment.count(
+		 		{ distinct:["Comments.QuizId"],
+		 		  where: ["QuizId not like ?", "NULL"]}
+		 		).then(function(nPcC){
+			 		console.log("hay" + nPcC + "con comentarios alsaask");	 		
+			 		var nPsC = nP - nPcC;
+			 		console.log("hay" + nPsC + "sin comentarios alsaask");
+					console.log(media);
+	 				res.render('quizes/statistics',{errors: [], nP: nP, nC: nC, media: media.toFixed(2),nPcC: nPcC, nPsC: nPsC});
+		 			});
+		});
+	});
+
+
 };
 
 /*
