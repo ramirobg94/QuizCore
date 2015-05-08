@@ -150,10 +150,9 @@ exports.statistics = function(req,res){
 		 	var media = nC / nP;
 		 models.Quiz.count(
 		 		{ 
-		 			//select
-		 			//DISTINCT:"Comments.QuizId",
-		 		  //WHERE: ["Comments.QuizId not like ?", "NULL"],
-		 		  INCLUDE: [{model: models.Comment, where: ["Comments.QuizId not like ?", "NULL"],distinct:"Comments.QuizId"}]}
+		 			distinct:"Quiz.id",
+		 		  where: ["Comments.QuizId not like ?", "NULL"],
+		 		  include: [models.Comment]}
 		 		).then(function(nPcC){
 			 		console.log("hay" + nPcC + "con comentarios alsaask");	 		
 			 		var nPsC = nP - nPcC;
