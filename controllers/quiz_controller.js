@@ -145,11 +145,11 @@ Executing (default): SELECT count(DISTINCT(`Quiz`.`id`)) AS `count` FROM `Quizze
 
 
 		 		//DISTINCT: "Comments.QuizId",
-		 		//distinct:"Comments.QuizId",
+		 		distinct:{"Comments.QuizId"},
 		 		//unique:"Comments.QuizId",
-		 	where: ["Comments.QuizId not like ?", "NULL"],
+		 	where: {"Comments.QuizId not like ?", "NULL"},
 		 		
-		 		include: [models.Comment]}
+		 		include: {models.Comment}}
 		 		).then(function(nPcC){
 		 		console.log("hay" + nPcC + "con comentarios alsaask");	 		
 		 	var nPsC = nP - nPcC;
