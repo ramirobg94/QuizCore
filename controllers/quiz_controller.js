@@ -144,8 +144,9 @@ Executing (default): SELECT count(DISTINCT(`Quiz`.`id`)) AS `count` FROM `Quizze
 */
 
 
-		 		DISTINCT: true,
+		 		//DISTINCT: "Comments.QuizId",
 		 		//distinct:"Comments.QuizId",
+		 		unique:"Comments.QuizId",
 		 	where: ["Comments.QuizId not like ?", "NULL"],
 		 		
 		 		include: [models.Comment]}
