@@ -151,7 +151,7 @@ exports.statistics = function(req,res){
 		 models.Quiz.count(
 		 		{ 
 		 			//select
-		 			DISTINCT:"Comments.QuizId true",
+		 			DISTINCT:"Comments.QuizId",
 		 		  WHERE: ["Comments.QuizId not like ?", "NULL"],
 		 		  INCLUDE: [models.Comment]}
 		 		).then(function(nPcC){
