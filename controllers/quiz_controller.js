@@ -91,6 +91,7 @@ exports.index = function(req, res, next) {
 	misearch = ' para "' + misearch +'".';
 	}
 
+
 	models.Quiz.findAll({
 		where:["pregunta like ?", search], //ilike es case-INsensitive frente a like !! extension de postgreSQL
 		order:'pregunta ASC',
@@ -146,24 +147,27 @@ exports.statistics = function(req,res){
 */
 
 
-	models.Quiz.count().then(function(nP){
+	models.Quiz.findAll({include: [{
+		 model: models.Comment 
+		}]}).then(function(P){
 		 models.Comment.count().then(function(nC){
+		 	var nP = P.length;
 		 	var media = nC / nP;
-		 models.Quiz.count(
-		 		{ 
-		 			distinct:"Comments.QuizId",
-		 		  where: ["Comments.QuizId not like ?", "NULL"],
-		 		  include: [{model: models.Comment,
-		 		  			attributes:["QuizId"]}]}
-		 		).then(function(nPcC){
-			 		console.log("hay" + nPcC + "con comentarios alsaask");	 		
-			 		var nPsC = nP - nPcC;
-			 		console.log("hay" + nPsC + "sin comentarios alsaask");
-					console.log(media);
-	 				res.render('quizes/statistics',{errors: [], nP: nP, nC: nC, media: media.toFixed(2),nPcC: nPcC, nPsC: nPsC});
-		 			});
+		 	var nPcC = 0;
+		 	for(index = 0; index < nP; index++){
+		 		console.log(P[index].Comments.length);
+		 		if(P[index].Comments.length > 0){
+		 			nPcC++;
+		 		}
+		 	}
+		 	var nPsC = nP - nPcC;
+
+
+	 		res.render('quizes/statistics',{errors: [], nP: nP, nC: nC, media: media.toFixed(2),nPcC: nPcC, nPsC: nPsC});
+
 		});
 	});
+
 
 
 };
