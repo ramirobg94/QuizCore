@@ -155,7 +155,8 @@ exports.statistics = function(req,res){
 		 	var media = nC / nP;
 		 	var nPcC = 0;
 		 	for(index = 0; index < nP; index++){
-		 		console.log(P[index].Comments.length);
+
+		 		console.log(P[index].Comments);
 		 		if(P[index].Comments.length > 0){
 		 			nPcC++;
 		 		}
