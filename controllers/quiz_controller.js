@@ -156,7 +156,7 @@ exports.statistics = function(req,res){
 		 	var nPcC = 0;
 		 	for(index = 0; index < nP; index++){
 
-		 		console.log(P[index].Comments);
+		 		//console.log(P[index].Comments);
 		 		if(P[index].Comments.length > 0){
 		 			nPcC++;
 		 		}
