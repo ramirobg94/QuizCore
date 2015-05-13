@@ -7,12 +7,17 @@ var users = {
 // si autenticaci´on fall o hay errores se ejecuta callback(error)
 
 exports.autenticar = function(login, password, callback){
-	if(users[login]){
-		if(password === users[login].password){
-			callback(null, users[login]);
+
+	models.User.find({
+		where: {
+			username: login
 		}
-		else {callback(new Error('password erroneo.')); }
-	} else {
-		callback(new Error('No existe el usuario.'));
-	}
+	}).then(function(user){
+		if (user) {
+			if(user.verifyPassword(password)){
+				callback(null, user);
+			}
+			else{callback(new Error('password erroneo.')); }
+	} else { callback(new Error('No existe user=' login))}
+	}).catch(function(error){callback(error)});
 };

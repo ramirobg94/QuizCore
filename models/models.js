@@ -35,33 +35,47 @@ var Quiz = sequelize.import(quiz_path);
 var comment_path = path.join(__dirname,'comment');
 var Comment = sequelize.import(comment_path);
 
+//Importar la definicion de la tabla user
+var user_path = path.join(__dirname,'user');
+var User = sequelize.import(user_path);
+
 Comment.belongsTo(Quiz);
 Quiz.hasMany(Comment);
 
+//RElacion 1-N entre User y Quiz
+Quiz.belongsTo(User);
+User.hasMany(Quiz);
+
+
+
 exports.Quiz = Quiz; //exportar definicion de la tabla Quiz
 exports.Comment = Comment;
+exports.User =
 
 //sequelize.sync() crea e inicializa la tabla de preguntas en DB
 sequelize.sync().then(function() {
 	//then(..) ejecuta el manejador una vez creada la tabla
-	Quiz.count().then(function(count){
+	User.count().then(function(count){
 		if(count === 0) { //la tabla se inicializa solo si esta vacia
-			Quiz.create({ pregunta:'Capital de Italia?',
-							respuesta: 'Roma'
-						});
-			Quiz.create({ pregunta:'Capital de Portugal?',
-							respuesta: 'Lisboa'
-						});
-			Quiz.create({ pregunta:'Capital de Francia?',
-							respuesta: 'Paris'
-						});
-			Quiz.create({ pregunta:'Capital de Alemania?',
-							respuesta: 'Berlin'
-						});
-			Quiz.create({ pregunta:'Capital de España?',
-							respuesta: 'Madrid'
-						})
-			.then( function(){console.log('Base de datos inicializa')});
-		};
+			User.bulkCreate(
+				[	{username: 'admin', password: '1234', isAdmin: true},
+					{username: 'pepe', password: '5678'} //isAdmin por defecto vale false
+					]
+				).then(function(){
+					console.log('Base de datos (tabla user) inicializa');
+					Quiz.count().then(function(count){
+						if(count === 0) { 
+							Quiz.bulkCreate(
+								[ { pregunta:'Capital de Italia?', 		respuesta: 'Roma', 		userId:2},
+								  { pregunta:'Capital de Portugal?',	respuesta: 'Lisboa',	userId:2},
+								  { pregunta:'Capital de Francia?',		respuesta: 'Paris',		userId:2},
+								  { pregunta:'Capital de Alemania?',	respuesta: 'Berlin',	userId:1},
+								  { pregunta:'Capital de España?',		respuesta: 'Madrid',	userId:2}
+								]
+							).then(function(){console.log('Base de datos (table quiz) inicializa')});
+						};
+					});
+				});
+			};
+		});
 	});
-});

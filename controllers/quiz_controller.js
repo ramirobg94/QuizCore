@@ -14,18 +14,23 @@ exports.new = function(req,res){
 };
 // POST /quizes/create
 exports.create = function(req, res) {
+	req.body.quiz.UserId = req.session.user.id;
 	var quiz = models.Quiz.build( req.body.quiz);
-	quiz.validate().then(function(err){
-		if(err){
-			res.render('quizes/new',{quiz: quiz, errors: err.errors});
-		}else{
-	//Guarda en la DB los campos pregunta y respuesta de quiz
-	quiz.save({fields: ["pregunta", "respuesta"]})
-	.then(function(){res.redirect('/quizes');}) 
-	//REdireccion HTTP (URL relativo) lista e preguntas
+	quiz
+	.validate()
+	.then(
+		function(err){
+			if(err){
+				res.render('quizes/new',{quiz: quiz, errors: err.errors});
+			}else{
+				//Guarda en la DB los campos pregunta y respuesta de quiz
+				quiz
+				.save({fields: ["pregunta", "respuesta","UserId"]})
+				.then(function(){res.redirect('/quizes');}) 
+				//REdireccion HTTP (URL relativo) lista e preguntas
 	}
 		}
-	);
+	).catch(function(error){next.redirect('/quizes')});
 };
 
 //POST /quizes/:id/edit
@@ -93,7 +98,7 @@ exports.index = function(req, res, next) {
 
 
 	models.Quiz.findAll({
-		where:["pregunta ilike ?", search], //ilike es case-INsensitive frente a like !! extension de postgreSQL
+		where:["pregunta like ?", search], //ilike es case-INsensitive frente a like !! extension de postgreSQL
 		order:'pregunta ASC',
 		include: [{
 		 model: models.Comment 
