@@ -81,7 +81,6 @@ sequelize.sync().then(function() {
 										})
 									console.log("bien creado users");
 
-
 							});
 						};
 					});
