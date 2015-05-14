@@ -40,9 +40,9 @@ module.exports = function(sequelize, DataTypes) {
 									.update(password)
 									.digest('hex');
 						}catch(e){console.log(e);}
-						console.log(password);
+						console.log("PAsword : " + password);
 					
-					console.log(encripted);
+					console.log("ENcripted: " + encripted);
 					//var encripted = crypto
 					//				.createHmac('sha1', key)
 					//				.update(password)
@@ -61,18 +61,14 @@ module.exports = function(sequelize, DataTypes) {
 		{
 			instanceMethods:{
 				verifyPassword: function(password){
-						var hmac = crypto.createHmac('sha1',key);
-							hmac.update(password);
-							hmac.digest('hex');
-						console.log("paSS: " + password);
-						console.log("HMAC:" + hmac);
-
-				//	var encripted = crypto
-				//					.createHmac('sha1', key)
-				//					.update(password)
-				//					.digest('hex');
-					var encripted = hmac;
-					console.log("estamos por aqui probando y tal" + this.password)
+						try{var encripted = crypto
+								.createHmac('sha1', key)
+									.update(password)
+									.digest('hex');
+						}catch(e){console.log(e);}
+						console.log("PAsword : " + password);
+					
+					console.log("ENcripted: " + encripted);
 					return encripted === this.password;
 				}
 			}
