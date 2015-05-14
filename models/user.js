@@ -35,6 +35,10 @@ module.exports = function(sequelize, DataTypes) {
 					notEmpty:{msg:"--> Falta password"}
 				},
 				set: function (password){
+					var hmac = crypto.createHmac('sha1',key);
+							hmac.update(password);
+							hmac.digest('hex');
+						console.log(password);
 					var encripted = 'a';
 					//var encripted = crypto
 					//				.createHmac('sha1', key)
@@ -54,6 +58,11 @@ module.exports = function(sequelize, DataTypes) {
 		{
 			instanceMethods:{
 				verifyPassword: function(password){
+						var hmac = crypto.createHmac('sha1',key);
+							hmac.update(password);
+							hmac.digest('hex');
+						console.log(password);
+
 				//	var encripted = crypto
 				//					.createHmac('sha1', key)
 				//					.update(password)
