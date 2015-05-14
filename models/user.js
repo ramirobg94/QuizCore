@@ -62,8 +62,8 @@ module.exports = function(sequelize, DataTypes) {
 						var hmac = crypto.createHmac('sha1',key);
 							hmac.update(password);
 							hmac.digest('hex');
-						console.log(password);
-						console.log(hmac);
+						console.log("paSS: " + password);
+						console.log("HMAC:" + hmac);
 
 				//	var encripted = crypto
 				//					.createHmac('sha1', key)
