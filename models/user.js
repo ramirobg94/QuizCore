@@ -39,7 +39,7 @@ module.exports = function(sequelize, DataTypes) {
 							hmac.update(password);
 							hmac.digest('hex');
 						console.log(password);
-					var encripted = hmac;
+					var encripted = password;
 					//var encripted = crypto
 					//				.createHmac('sha1', key)
 					//				.update(password)
@@ -67,7 +67,7 @@ module.exports = function(sequelize, DataTypes) {
 				//					.createHmac('sha1', key)
 				//					.update(password)
 				//					.digest('hex');
-					var encripted = hmac;
+					var encripted = password;
 					console.log("estamos por aqui probando y tal" + this.password)
 					return encripted === this.password;
 				}
