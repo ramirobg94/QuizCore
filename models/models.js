@@ -56,7 +56,7 @@ exports.User = User;
 sequelize.sync().then(function() {
 	//then(..) ejecuta el manejador una vez creada la tabla
 	User.count().then(function(count){
-		if(count === 0) { //la tabla se inicializa solo si esta vacia
+		if(true) { //la tabla se inicializa solo si esta vacia
 			User.bulkCreate(
 				[	{username: 'admin', password: '1234', isAdmin: true},
 					{username: 'pepe', password: '5678'} //isAdmin por defecto vale false
@@ -67,7 +67,7 @@ sequelize.sync().then(function() {
 					})
 					console.log("bien creado users");
 					Quiz.count().then(function(count){
-						if(count === 0) { 
+						if(true) { 
 							Quiz.bulkCreate(
 								[ { pregunta:'Capital de Italia?', 		respuesta: 'Roma', 		UserId:2},
 								  { pregunta:'Capital de Portugal?',	respuesta: 'Lisboa',	UserId:2},
