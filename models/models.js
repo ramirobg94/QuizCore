@@ -50,7 +50,7 @@ User.hasMany(Quiz);
 
 exports.Quiz = Quiz; //exportar definicion de la tabla Quiz
 exports.Comment = Comment;
-exports.User =
+exports.User = User;
 
 //sequelize.sync() crea e inicializa la tabla de preguntas en DB
 sequelize.sync().then(function() {

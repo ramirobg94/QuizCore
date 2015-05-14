@@ -40,7 +40,7 @@ exports.update = function(req, rex, next) {
 	req.user.username = req.body.user.username;
 	req.user.password = req.body.user.password;
 
-	req.username
+	req.user
 	.validate()
 	.then(
 		function(err){
@@ -60,7 +60,7 @@ exports.new = function(req,res) {
 	var user = models.User.build( // crea objeto user
 			{username:"", password: ""}
 		);
-	res.render('/user/new', {user: user, errors: [] });
+	res.render('user/new', {user: user, errors: [] });
 };
 
 // POST /user

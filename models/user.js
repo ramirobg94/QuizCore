@@ -4,7 +4,7 @@ var key = process.env.PASSWORD_ENCRYPTION_KEY;
 
 //Definicion del modelo de Comment con validacion
 module.exports = function(sequelize, DataTypes) {
-	return sequelize.define(
+	var User = sequelize.define(
 		'User',
 		{	
 			username: {
@@ -54,10 +54,14 @@ module.exports = function(sequelize, DataTypes) {
 			instanceMethods:{
 				verifyPassword: function(password){
 					var encripted = crypto
+									.createHmac('sha1', key)
+									.update(password)
+									.digest('hex');
 
 					return encripted === this.password;
 				}
 			}
 		}
 	);
+return User;
 }
