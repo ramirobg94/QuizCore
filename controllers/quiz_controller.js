@@ -87,7 +87,7 @@ exports.index = function(req, res, next) {
 	misearch = req.query.search;
 	search = por
 	if(undefined === req.query.search){
-		misearch = '.'
+		misearch = '.';
 
 	}else{
 	misearch = misearch.replace(/[^\w]/g,por);
