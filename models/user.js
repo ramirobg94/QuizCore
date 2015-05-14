@@ -59,7 +59,7 @@ module.exports = function(sequelize, DataTypes) {
 				//					.update(password)
 				//					.digest('hex');
 					var encripted = 'a';
-					
+					console.log("estamos por aqui probando y tal" + this.password)
 					return encripted === this.password;
 				}
 			}
