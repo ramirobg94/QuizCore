@@ -1,6 +1,6 @@
 //Modelo de User con validaci´on y encriptaci´on de passwords
 var crypto = require('crypto');
-var key = process.env.PASSWORD_ENCRYPTION_KEY;
+var key = process.env['PASSWORD_ENCRYPTION_KEY'];
 
 //Definicion del modelo de Comment con validacion
 module.exports = function(sequelize, DataTypes) {
