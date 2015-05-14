@@ -62,7 +62,10 @@ sequelize.sync().then(function() {
 					{username: 'pepe', password: '5678'} //isAdmin por defecto vale false
 					]
 				).then(function(){
-					console.log('Base de datos (tabla user) inicializa');
+					User.findAll().then(function(Users){
+						console.log(Users);
+					})
+					console.log("bien creado users");
 					Quiz.count().then(function(count){
 						if(count === 0) { 
 							Quiz.bulkCreate(
@@ -72,7 +75,14 @@ sequelize.sync().then(function() {
 								  { pregunta:'Capital de Alemania?',	respuesta: 'Berlin',	UserId:1},
 								  { pregunta:'Capital de España?',		respuesta: 'Madrid',	UserId:2}
 								]
-							).then(function(){console.log('Base de datos (table quiz) inicializa')});
+							).then(function(){
+									Quiz.findAll().then(function(Quizzes){
+									console.log(Quizzes);
+										})
+									console.log("bien creado users");
+
+
+							});
 						};
 					});
 				});

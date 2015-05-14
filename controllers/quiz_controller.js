@@ -98,7 +98,7 @@ exports.index = function(req, res, next) {
 
 
 	models.Quiz.findAll({
-		where:["pregunta ilike ?", search], //ilike es case-INsensitive frente a like !! extension de postgreSQL
+		where:["pregunta like ?", search], //ilike es case-INsensitive frente a like !! extension de postgreSQL
 		order:'pregunta ASC',
 		include: [{
 		 model: models.Comment 
