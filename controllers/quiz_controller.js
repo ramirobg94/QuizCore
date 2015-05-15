@@ -109,25 +109,35 @@ exports.load = function(req, res, next, quizId){
 //Get /quizes/index
 exports.index = function(req, res, next) {
 	misearch = req.query.search;
-	search = por
-	if(undefined === req.query.search){
+	search = por;
+	var options = {};
+
+	if(req.user){	//req.user es creado por autoload de usuario
+					// si la ruta lleva el parametro .quizId
+		options.where = {UserId: req.user.id}
+	} else {
+			if(undefined === req.query.search){
 		misearch = '.';
 
-	}else{
-	misearch = misearch.replace(/[^\w]/g,por);
-	search = search.concat(misearch);
-	search = search.concat(por);
-	misearch = ' para "' + misearch +'".';
+			}else{
+				misearch = misearch.replace(/[^\w]/g,por);
+				search = search.concat(misearch);
+				search = search.concat(por);
+				misearch = ' para "' + misearch +'".';
+				}
+
+		options.where = ["pregunta like ?", search];
+		options.order = 'pregunta ASC';
+		options.include = [{model: models.Comment}]
+
 	}
 
 
-	models.Quiz.findAll({
-		where:["pregunta like ?", search], //ilike es case-INsensitive frente a like !! extension de postgreSQL
-		order:'pregunta ASC',
-		include: [{
-		 model: models.Comment 
-		}]
-		}).then(function(quizes){
+
+
+	models.Quiz.findAll(
+			options
+		).then(function(quizes){
 		res.render('quizes/index.ejs', {quizes: quizes, errors: [], misearch: misearch, search: search});
 	}).catch(function(error){next(error);});
 };
