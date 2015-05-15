@@ -31,7 +31,8 @@
 
 			</div>
 						
-			<%if(session.user){%>				
+			<%if(session.user){
+				if (session.user.isAdmin || session.user.id === quizes[i].UserId) {%>			
 			<div class="col-xs-6 col-sm-2">
 
 					<a href="quizes/<%= quizes[i].id %>/edit">
@@ -51,6 +52,7 @@
 					</form>
 
 			</div>
+			<%}%>
 			<%}%>
 
 		</div>

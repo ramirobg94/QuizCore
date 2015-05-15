@@ -1,7 +1,6 @@
 //MW de autorizacion de accesos HTTP restringidos
 exports.loginRequired = function(req,res,next){
 	if( req.session.user){
-		console.log("Si entro por aqui y tiro por que me")
 		next();
 	} else{
 		res.redirect('/login');
@@ -36,7 +35,7 @@ exports.create = function(req,res){
 
 		//Crear req.session.user y guardar campos id y username
 		// La sesion se define por la existencia de: req.session.user
-		req.session.user = {id:user.id, username:user.username};
+		req.session.user = {id:user.id, username:user.username, isAdmin:user.isAdmin};
 
 		res.redirect(req.session.redir.toString()); //redireccion a path anterior o login
 	});
