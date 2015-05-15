@@ -1,10 +1,12 @@
+   <div class="col-xs-12 col-sm-3">
    <%if (quiz.image) {%>
-   <p><img class="quiz_img" src="/media/<%= quiz.image %>"></p>
+   <p><img class="img-responsive" src="/media/<%= quiz.image %>"></p>
     <%}%>
+    </div>
 
 
     <form method="get" action="/quizes/<%= quiz.id %>/answer">
-    	<div class="col-xs-12 col-sm-12">	
+    	<div class="col-xs-12 col-sm-6">	
     	<h4>Pregunta:</h4> 
     	<div class="col-xs-12">
     	<div class="preguntaBox">
@@ -26,9 +28,11 @@
 		</div>
     </form>
 
+<div class="col-xs-12 col-sm-3">
 <p><a href="/quizes/<%=quiz.id %>/comments/new">    <div class="box bg-1">
                     <button class="button button--isi button--text-thick button--text-upper button--size-s"><span> Nuevo comentario <span class=" glyphicon glyphicon-comment"></button>
                 </div></a></p>
+
 
 <p>Comentarios:</p>
 <%for(index in quiz.Comments) {%>
@@ -41,6 +45,7 @@
         </p>
     <%}%>
 <%}%>
-
-
+</div>
+<div class="col-xs-12">
     <a href="/quizes"> Volver</a>
+</div>
