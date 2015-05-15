@@ -50,7 +50,7 @@ exports.edit = function(req,res){
 };			//req.user: instancia de user cargada con Autoload
 
 //PUT /user/:id
-exports.update = function(req, rex, next) {
+exports.update = function(req, res, next) {
 	req.user.username = req.body.user.username;
 	req.user.password = req.body.user.password;
 
