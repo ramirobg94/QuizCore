@@ -118,6 +118,15 @@ white-space: pre-wrap;
   margin-top: 0%;
 }
 
+.right{
+  float: right;
+}
+
+.quiz_img{
+  height: 150px;
+  float: left;
+}
+
 @media(max-width: 992px){
 	 	.apellidos > h2 {
  		font-size: 26px;

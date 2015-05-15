@@ -1,5 +1,5 @@
 <h4>Edite pregunta:</h4>
-<form method="post" action="/quizes/<%= quiz.id %>?_method=put">
+<form method="post" action="/quizes/<%= quiz.id %>?_method=put" enctype="multipart/form-data">
 	<% include _form.ejs %>
 </form>
 <div class="col-xs-12 col-sm-offset-3 col-sm-6">	
