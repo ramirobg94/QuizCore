@@ -41,7 +41,7 @@
 			</div>	
 			<div class="col-xs-12">
 				<form method="post" action="/user/<%= session.user.id %>/favourites/<%=quizes[i].id%>?_method=delete">
-						<button type="submit"><span>Quitar Fav</span><span class="glyphicon glyphicon-star"></span></button>
+						<button type="submit" onClick="return confirm('quitar de favoritoss')"><span>Quitar Fav</span><span class="glyphicon glyphicon-star"></span></button>
 				</form>
 
 			</div>	
