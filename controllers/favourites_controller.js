@@ -24,18 +24,23 @@ exports.new = function(req, res, next){
 
 //MW para quitar una pregunta de favorita
 exports.destroy = function(req, res){
+	console.log("llego a este otro");
 	var quiz = req.quiz;
 	var user = req.user;
 	console.log("llego a este otro");
-/*
-	if(user.hasQuiz(quiz)){
-		console.log('si lo tiene');
-		user.remove(quiz).then(function(){
-			console.log('ahora deberia ser false' + user.hasQuiz(quiz));
-		});
-	}
-*/
 
+user.hasQuiz(quiz).then(function(result){
+	console.log(result);
+		if(result){
+			console.log("es favorita");
+			
+			user.removeQuiz(quiz).then(function(){
+				user.hasQuiz(quiz).then(function(result){
+					console.log(" el" +user.id + " quito de favorita a la pregunta " + quiz.id + " con exito");
+				})
+			})
+		}
+	});
 }
 
 //Mw para listar preguntas favoritas

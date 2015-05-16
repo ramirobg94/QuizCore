@@ -32,9 +32,9 @@ router.delete('/user/:userId(\\d+)',	sessionController.loginRequired, userContro
 router.get('/user/:userId(\\d+)/quizes',	quizController.index);
 
 //Definicion de rutas para favoritos
-router.put('/user/:userId(\\d+)/favourites/:quizId(\\d+)',		 sessionController.loginRequired, favouritesController.new);
-router.delete('/user/:userId(\\d+)/favourites:/quizId(\\d+)',	 sessionController.loginRequired, favouritesController.destroy);
-router.get('/user/:userId(\\d+)/favourites',					 sessionController.loginRequired, favouritesController.listFav);
+router.put('/user/:userId(\\d+)/favourites/:quizId(\\d+)', sessionController.loginRequired, favouritesController.new);
+router.delete('/user/:userId(\\d+)/favourites/:quizId(\\d+)', sessionController.loginRequired, favouritesController.destroy);
+router.get('/user/:userId(\\d+)/favourites', sessionController.loginRequired, favouritesController.listFav);
 
 
 

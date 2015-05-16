@@ -32,10 +32,16 @@
 			</div>
 							
 			<%if(session.user){ %>
-			
+
 				<div class="col-xs-12">
 				<form method="post" action="/user/<%= session.user.id %>/favourites/<%=quizes[i].id%>?_method=put">
-						<button type="submit"><span>Fav</span><span class="glyphicon glyphicon-star"></span></button>
+						<button type="submit"><span>Fav</span><span class="glyphicon glyphicon-star-empty"></span></button>
+				</form>
+
+			</div>	
+			<div class="col-xs-12">
+				<form method="post" action="/user/<%= session.user.id %>/favourites/<%=quizes[i].id%>?_method=delete">
+						<button type="submit"><span>Quitar Fav</span><span class="glyphicon glyphicon-star"></span></button>
 				</form>
 
 			</div>	
