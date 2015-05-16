@@ -46,6 +46,10 @@ Quiz.hasMany(Comment);
 Quiz.belongsTo(User);
 User.hasMany(Quiz);
 
+//Relacion para favoritos
+User.belongsToMany(Quiz, {through: 'favourites'});
+Quiz.belongsToMany(User, {through: 'favourites'});
+
 
 
 exports.Quiz = Quiz; //exportar definicion de la tabla Quiz
@@ -79,7 +83,7 @@ sequelize.sync().then(function() {
 									Quiz.findAll().then(function(Quizzes){
 									console.log(Quizzes);
 										})
-									console.log("bien creado users");
+									console.log("bien creado quizzes");
 
 
 							});
