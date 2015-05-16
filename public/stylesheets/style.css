@@ -117,6 +117,21 @@ white-space: pre-wrap;
 .botonQ{
   margin-top: 0%;
 }
+#izqBar{
+  background-color: #0F0;
+  float: left;
+  border-radius: 1.3em 0em 0em 1.3em;
+}
+#drcBar{
+  background-color: #F00;
+  float: left;
+  border-radius: 0em 1.3em 1.3em 0em;
+}
+.sBar{
+  border-style: solid;
+  border-width: 2px;
+  border-color: #333;
+}
 
 @media(max-width: 992px){
 	 	.apellidos > h2 {

@@ -126,7 +126,7 @@ exports.index = function(req, res, next) {
 				misearch = ' para "' + misearch +'".';
 				}
 
-		options.where = ["pregunta ilike ?", search];
+		options.where = ["pregunta like ?", search];
 		options.order = 'pregunta ASC';
 		options.include = [{model: models.Comment}]
 

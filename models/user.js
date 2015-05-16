@@ -56,6 +56,14 @@ module.exports = function(sequelize, DataTypes) {
 			isAdmin:{
 				type: DataTypes.BOOLEAN,
 				defaultValue: false
+			},
+			respondidas:{
+				type: DataTypes.INTEGER,
+				defaultValue: 0
+			},
+			respondidasBien:{
+				type: DataTypes.INTEGER,
+				defaultValue: 0
 			}
 		},
 		{

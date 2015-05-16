@@ -108,3 +108,13 @@ exports.destroy = function(req, res) {
 		res.redirect('/');
 	}).catch(function(error){next(error)});
 };
+
+//GET /user/index
+exports.index = function(req,res){
+	models.User.find({where: {
+			id: req.session.user.id
+		}}).then(function(user){
+			console.log(user);
+			res.render('user/index',{user:user, errors: []});
+		});
+}
