@@ -111,6 +111,7 @@ exports.index = function(req, res, next) {
 	misearch = req.query.search;
 	search = por;
 	var options = {};
+	var favs = [];
 
 	if(req.user){	//req.user es creado por autoload de usuario
 					// si la ruta lleva el parametro .quizId
@@ -132,21 +133,52 @@ exports.index = function(req, res, next) {
 
 	}
 
+	//Control de favoritos
+	if(req.session.user){
+		models.favourites.findAll({
+			where: {UserId: Number(req.session.user.id) },
+			order: 'QuizId ASC'
+		}).then(function(a){
+			for(index = 0; index < a.length;index++){
+			favs.push(a[index].dataValues.QuizId);
+			}
+		})
+	}
 
 
 
 	models.Quiz.findAll(
 			options
 		).then(function(quizes){
-		res.render('quizes/index.ejs', {quizes: quizes, errors: [], misearch: misearch, search: search});
+		res.render('quizes/index.ejs', {quizes: quizes, errors: [], misearch: misearch, search: search, favs: favs});
 	}).catch(function(error){next(error);});
 };
 
 //GEt /quizes/:id
 exports.show = function(req,res) {
 	models.Quiz.find(req.params.quizId).then(function(quiz){
-		res.render('quizes/show' , {quiz: req.quiz, errors: []});
-	})
+		//Control de favoritos
+var favo = 0 ;
+		if(req.session.user){
+			models.favourites.findAll({
+					where: {QuizId: Number(req.params.quizId) },
+					order: 'UserId ASC'
+				}).then(function(a){
+					//console.log(a);
+					for(index = 0; index < a.length;index++){
+
+						var resta = req.session.user.id - a[index].dataValues.UserId;
+						
+						if(resta === 0 ){
+							favo = 1;
+							console.log(favo);
+						}
+					}
+				})
+			.then(function(){
+				res.render('quizes/show' , {quiz: req.quiz, errors: [], favo: favo });
+			})}
+		})
 };
 
 //GEt /quizes/:id/answer

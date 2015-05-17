@@ -18,6 +18,7 @@ exports.new = function(req, res, next){
 				})
 			})
 		}
+		res.redirect('/quizes');
 	});
 
 }
@@ -39,7 +40,10 @@ user.hasQuiz(quiz).then(function(result){
 					console.log(" el" +user.id + " quito de favorita a la pregunta " + quiz.id + " con exito");
 				})
 			})
+		} else {
+			console.log("no es favorita");
 		}
+		res.redirect('/quizes');
 	});
 }
 

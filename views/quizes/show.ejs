@@ -2,6 +2,24 @@
    <%if (quiz.image) {%>
    <p><img class="img-responsive" src="/media/<%= quiz.image %>"></p>
     <%}%>
+        <%if(session.user){ %>
+
+               <%if(favo > 0 ){ var color = '#FF0'; var method = "delete";var onClick = "confirmar()" %>
+               <%} else { color = '#555'; var method = "put"; var onClick = ""; %>
+               <%} %>
+                <script>
+                function confirmar(){
+                    return confirm('quitar de favoritos');
+                }
+                </script>
+<div class="col-xs-2 col-sm-2">
+                <form method="post" action="/user/<%= session.user.id %>/favourites/<%=quiz.id%>?_method=<%=method%>" >
+                        <button id="estrella<%=quiz.id%>" type="submit" onClick="<%=onClick%>;" style="color:<%= color %>;"><span class="glyphicon glyphicon-star"></span></button>
+                </form>
+
+            </div>  
+
+            <%}%>
     </div>
 
 

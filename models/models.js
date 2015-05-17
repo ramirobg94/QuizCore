@@ -47,6 +47,8 @@ Quiz.belongsTo(User);
 User.hasMany(Quiz);
 
 //Relacion para favoritos
+
+favourites = sequelize.define('favourites')
 User.belongsToMany(Quiz, {through: 'favourites'});
 Quiz.belongsToMany(User, {through: 'favourites'});
 
@@ -55,6 +57,7 @@ Quiz.belongsToMany(User, {through: 'favourites'});
 exports.Quiz = Quiz; //exportar definicion de la tabla Quiz
 exports.Comment = Comment;
 exports.User = User;
+exports.favourites = favourites;
 
 //sequelize.sync() crea e inicializa la tabla de preguntas en DB
 sequelize.sync().then(function() {

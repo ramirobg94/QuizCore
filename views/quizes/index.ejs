@@ -30,25 +30,31 @@
 					<div class="preguntaBox preguntaBoxIndex"><a href="/quizes/<%= quizes[i].id %>"> <button class="btn btn2"><%= quizes[i].pregunta %> </button></a></div>
 
 			</div>
-							
+
 			<%if(session.user){ %>
 
-				<div class="col-xs-12">
-				<form method="post" action="/user/<%= session.user.id %>/favourites/<%=quizes[i].id%>?_method=put">
-						<button type="submit"><span>Fav</span><span class="glyphicon glyphicon-star-empty"></span></button>
-				</form>
+				<%if(favs.indexOf(quizes[i].id) >= 0 ) { var color = '#FF0'; var method = "delete";var onClick = "confirmar()" %>
+						
+			<% }  else { color = '#555'; var method = "put"; var onClick = ""; %>
+				
 
-			</div>	
-			<div class="col-xs-12">
-				<form method="post" action="/user/<%= session.user.id %>/favourites/<%=quizes[i].id%>?_method=delete">
-						<button type="submit" onClick="return confirm('quitar de favoritoss')"><span>Quitar Fav</span><span class="glyphicon glyphicon-star"></span></button>
+				<script>
+				function confirmar(){
+					return confirm('quitar de favoritos');
+				}
+				</script>
+
+		<% } %>
+		<div class="col-xs-2 col-sm-2">
+				<form method="post" action="/user/<%= session.user.id %>/favourites/<%=quizes[i].id%>?_method=<%=method%>" >
+						<button id="estrella<%=quizes[i].id%>" type="submit" onClick="<%=onClick%>;" style="color:<%= color %>;"><span class="glyphicon glyphicon-star"></span></button>
 				</form>
 
 			</div>	
 
 
 				<% if (session.user.isAdmin || session.user.id === quizes[i].UserId) {%>			
-			<div class="col-xs-6 col-sm-2">
+			<div class="col-xs-3 col-sm-2">
 
 					<a href="/quizes/<%= quizes[i].id %>/edit">
 			 		<div class="box bg-1"> 
@@ -58,7 +64,7 @@
 
 			</div>
 
-			<div class="col-xs-6 col-sm-2">
+			<div class="col-xs-3 col-sm-2">
 
 					<form method="post" action="/quizes/<%= quizes[i].id %>?_method=delete">
 						<div class="box bg-1"> 
