@@ -3,3 +3,6 @@ node_modules
 npm-debug.log
 quiz.sqlite
 public/media
+.env
+commands_to_generate_keys.txt
+.certs

@@ -2,9 +2,9 @@
 
 Proyecto Quiz para la asignatura de Computación en Red (3º Grado de Teleco en la ETSIT-UPM)
 
-### autores:
+### Autores:
 	- Ramiro Blázquez González
-        - Miguel Bausa Pérez
+       - Miguel Bausa Pérez
           
 
 ### Definición          
