@@ -59,7 +59,7 @@ exports.listFav = function(req, res){
 
 		models.favourites.findAll({
 			where: {UserId: Number(req.session.user.id) },
-			order: 'QuizId ASC'
+			//order: 'QuizId ASC'
 		}).then(function(a){
 						quizes = [];
 			for(index = 0; index < a.length;index++){
@@ -75,6 +75,7 @@ exports.listFav = function(req, res){
 
 				models.Quiz.find({
 					where:{ id: Number(idB)},
+					order: 'pregunta ASC'
 					include: [{model: models.Comment}]
 					}).then(function(quiz){
 						quizes.push(quiz);
