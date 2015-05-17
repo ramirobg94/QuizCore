@@ -38,7 +38,23 @@ app.use(function(req,res,next){
     //guardar path en session.redir para despues de login
     if(!req.path.match(/\/login|\/logout|\/user/)) {
         req.session.redir = req.path;
+        //console.log("Redir: " + req.session.redir.toString());
     }
+     //guardar path en session.redir para despues fav en mis preguntas
+    if(req.path.match(/\/user\/[0-9]+\/favourites|quizes/)) {
+        if(!req.path.match(/[\/user\/[0-9]+\/favourites|quizes\/[0-9]+]/)){
+        req.session.redir = req.path;
+        console.log("LA DIRECCION DE Redir: " + req.session.redir.toString());
+    }
+}
+      //guardar path en session.redir para despues fav en mis preguntas
+   /* if(req.path.match(/\/user\/[0-9]+\/favourites/)) {
+        req.session.redir = req.path;
+       // console.log("Redir: " + req.session.redir.toString());
+    }
+*/
+
+
 
     //Hacer visible req.session en las vistas
     res.locals.session = req.session;

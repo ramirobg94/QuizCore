@@ -9,7 +9,7 @@ exports.new = function(req, res, next){
 
 	user.hasQuiz(quiz).then(function(result){
 		if(result){
-			console.log("ya es favorita");
+			//console.log("ya es favorita");
 			next();
 			return;
 		} else {
@@ -19,6 +19,7 @@ exports.new = function(req, res, next){
 				})
 			})
 		}
+		//console.log(req.session.redir.toString());
 		res.redirect(req.session.redir.toString());
 	});
 
@@ -26,15 +27,15 @@ exports.new = function(req, res, next){
 
 //MW para quitar una pregunta de favorita
 exports.destroy = function(req, res){
-	console.log("llego a este otro");
+//	console.log("llego a este otro");
 	var quiz = req.quiz;
 	var user = req.user;
-	console.log("llego a este otro");
+//	console.log("llego a este otro");
 
 user.hasQuiz(quiz).then(function(result){
-	console.log(result);
+//	console.log(result);
 		if(result){
-			console.log("es favorita");
+//			console.log("es favorita");
 			
 			user.removeQuiz(quiz).then(function(){
 				user.hasQuiz(quiz).then(function(result){
@@ -42,7 +43,7 @@ user.hasQuiz(quiz).then(function(result){
 				})
 			})
 		} else {
-			console.log("no es favorita");
+//			console.log("no es favorita");
 		}
 		res.redirect(req.session.redir.toString());
 	});
@@ -54,6 +55,7 @@ exports.listFav = function(req, res){
 	var quizes2 = [];
 	index = 0;
 	index2 = 0;
+	var idB;
 
 		models.favourites.findAll({
 			where: {UserId: Number(req.session.user.id) },
@@ -67,64 +69,25 @@ exports.listFav = function(req, res){
 			index2 = 0;
 		}).then(function(){
 				//console.log(favs.length);
+				if(favs.length > 0 ){
 			for(index2 = 0; index2 < favs.length; index2++){
-				console.log("index2" + index2)
-					models.Quiz.find({
-									where:{ id: Number(favs[index2])},
-									include: [{model: models.Comment}]
-								}).then(function(quiz){
-									quizes.push(quiz);
-								}).then(function(){
-								//	console.log(quizes);
-								//	console.log(favs.length);
-								//	console.log(index2);
-									console.log(index2 >= (favs.length-1));
-									if(index2 >= (favs.length-1)){
-										console.log("Despues de buscar" + index2);
-					//console.log(quizes);
-									}	
+				idB=favs[index2];
 
-								});
-								
-
+				models.Quiz.find({
+					where:{ id: Number(idB)},
+					include: [{model: models.Comment}]
+					}).then(function(quiz){
+						quizes.push(quiz);
+						}).then(function(){
+							if(quizes.length === favs.length){
+								res.render('quizes/index.ejs', {quizes: quizes, errors: [], misearch: '', search: '', favs: favs});
+								}
+							});
 			}
-		}).then(function(){
-			//console.log(quizes);
-		}).then(function(){
-				res.render('quizes/index.ejs', {quizes: quizes, errors: [], misearch: '', search: '', favs: favs});
-		});
-
-
-
-/*
-models.favourites.findAll({
-			where: { UserId: Number(req.session.user.id) }
-		}).then(function(a){
-			console.log("busca");
-			quizes=[];
-
-			for(index = 0; index < a.length;index++){
-					favs.push(a[index].dataValues.QuizId);
-						models.Quiz.find({
-							where:{ id: Number(a[index].dataValues.QuizId)},
-							include: [{model: models.Comment}]
-						}).then(function(quiz){
-								quizes.push(quiz)
-								//console.log(quizes);
-								//console.log(quizes);
-								quizes2 =quizes;
-						});
-				} 
-
-
-		});
-
-if(quizes2 !== null){
-	console.log(quizes);
-			console.log(favs);
-				res.render('quizes/index.ejs', {quizes: quizes2, errors: [], misearch: '', search: '', favs: favs});
-}
-*/
+		} else {
+			res.render('quizes/index.ejs', {quizes: quizes, errors: [], misearch: '', search: '', favs: favs});
+		}
+});
 
 }
 

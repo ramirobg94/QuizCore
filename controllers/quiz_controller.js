@@ -115,7 +115,8 @@ exports.index = function(req, res, next) {
 
 	if(req.user){	//req.user es creado por autoload de usuario
 					// si la ruta lleva el parametro .quizId
-		options.where = {UserId: req.user.id}
+		options.where = {UserId: req.user.id};
+		options.order = 'pregunta ASC';
 	} else {
 			if(undefined === req.query.search){
 		misearch = '.';
@@ -150,7 +151,7 @@ exports.index = function(req, res, next) {
 	models.Quiz.findAll(
 			options
 		).then(function(quizes){
-			console.log(quizes);
+			//console.log(quizes);
 		res.render('quizes/index.ejs', {quizes: quizes, errors: [], misearch: misearch, search: search, favs: favs});
 	}).catch(function(error){next(error);});
 };
