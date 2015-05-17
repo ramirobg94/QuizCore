@@ -138,7 +138,7 @@ exports.index = function(req, res, next) {
 	if(req.session.user){
 		models.favourites.findAll({
 			where: {UserId: Number(req.session.user.id) },
-			order: 'QuizId ASC'
+			//order: 'QuizId ASC'
 		}).then(function(a){
 			for(index = 0; index < a.length;index++){
 			favs.push(a[index].dataValues.QuizId);
