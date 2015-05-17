@@ -158,6 +158,7 @@ exports.index = function(req, res, next) {
 
 //GEt /quizes/:id
 exports.show = function(req,res) {
+	console.log("ESTAMOS DENTRO DE SHOW");
 	models.Quiz.find(req.params.quizId).then(function(quiz){
 		//Control de favoritos
 var favo = 0 ;
