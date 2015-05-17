@@ -166,7 +166,7 @@ var favo = 0 ;
 		if(req.session.user){
 			models.favourites.findAll({
 					where: {QuizId: Number(req.params.quizId) },
-					order: 'UserId ASC'
+				//	order: 'UserId ASC'
 				}).then(function(a){
 					console.log("eNCONTRO fAVORITOS");
 					for(index = 0; index < a.length;index++){
