@@ -162,8 +162,10 @@ exports.show = function(req,res) {
 	models.Quiz.find(req.params.quizId).then(function(quiz){
 		console.log("CONTROL DE FAVORITOS");
 		//Control de favoritos
-var favo = 0 ;
+		var favo = 0 ;
+
 		if(req.session.user){
+			console.log("si hay sesion");
 			models.favourites.findAll({
 					where: {QuizId: Number(req.params.quizId) },
 				//	order: 'UserId ASC'
@@ -175,14 +177,16 @@ var favo = 0 ;
 						
 						if(resta === 0 ){
 							favo = 1;
-							console.log(favo);
-							console.log("muchos muchos mas FAVORITOS");
 						}
 					}
 				})
 			.then(function(){
 				res.render('quizes/show' , {quiz: req.quiz, errors: [], favo: favo });
-			})}
+			})}else{
+
+				console.log("no registrado");
+				res.render('quizes/show' , {quiz: req.quiz, errors: [], favo: favo });
+			}
 		})
 };
 
