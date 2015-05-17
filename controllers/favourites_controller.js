@@ -75,7 +75,7 @@ exports.listFav = function(req, res){
 
 				models.Quiz.find({
 					where:{ id: Number(idB)},
-					order: 'pregunta ASC'
+					order: 'pregunta ASC',
 					include: [{model: models.Comment}]
 					}).then(function(quiz){
 						quizes.push(quiz);
