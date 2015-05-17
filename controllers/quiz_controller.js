@@ -160,6 +160,7 @@ exports.index = function(req, res, next) {
 exports.show = function(req,res) {
 	console.log("ESTAMOS DENTRO DE SHOW");
 	models.Quiz.find(req.params.quizId).then(function(quiz){
+		console.log("CONTROL DE FAVORITOS");
 		//Control de favoritos
 var favo = 0 ;
 		if(req.session.user){
@@ -167,7 +168,7 @@ var favo = 0 ;
 					where: {QuizId: Number(req.params.quizId) },
 					order: 'UserId ASC'
 				}).then(function(a){
-					//console.log(a);
+					console.log("eNCONTRO fAVORITOS");
 					for(index = 0; index < a.length;index++){
 
 						var resta = req.session.user.id - a[index].dataValues.UserId;
@@ -175,6 +176,7 @@ var favo = 0 ;
 						if(resta === 0 ){
 							favo = 1;
 							console.log(favo);
+							console.log("muchos muchos mas FAVORITOS");
 						}
 					}
 				})
