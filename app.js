@@ -42,7 +42,7 @@ app.use(function(req,res,next){
     }
      //guardar path en session.redir para despues fav en mis preguntas
     if(req.path.match(/\/user\/[0-9]+\/favourites|quizes/)) {
-        if(!req.path.match(/[\/user\/[0-9]+\/favourites|quizes\/[0-9]+]/)){
+        if(!req.path.match(/favourites\/[0-9]+/)){
         req.session.redir = req.path;
         console.log("LA DIRECCION DE Redir: " + req.session.redir.toString());
     }
