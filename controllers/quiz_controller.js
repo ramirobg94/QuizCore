@@ -150,6 +150,7 @@ exports.index = function(req, res, next) {
 	models.Quiz.findAll(
 			options
 		).then(function(quizes){
+			console.log(quizes);
 		res.render('quizes/index.ejs', {quizes: quizes, errors: [], misearch: misearch, search: search, favs: favs});
 	}).catch(function(error){next(error);});
 };

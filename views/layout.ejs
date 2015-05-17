@@ -45,7 +45,8 @@
             <ul class="nav navbar-nav">
                 <li><a href="/quizes">Preguntas</a></li>
                 <% if (session.user) { %>
-                <li><a href="/user/<%=session.user.id %>/quizes">Mis preguntas</a></li>
+                <li><a href="/user/<%=session.user.id%>/quizes">Mis preguntas</a></li>
+                <li><a href="/user/<%=session.user.id%>/favourites">Mis favoritas</a></li>
                 <%}%>
                 <li><a href="/quizes/statistics">Estadisticas</a></li>
                 <li><a href="/author">Autores</a></li>
