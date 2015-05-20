@@ -108,3 +108,15 @@ exports.destroy = function(req, res) {
 		res.redirect('/');
 	}).catch(function(error){next(error)});
 };
+
+//GET /user/index
+exports.index = function(req,res){
+	models.User.find({where: {
+			id: req.session.user.id
+		}}).then(function(user){
+			console.log(user);
+			req.session.user.respondidas = user.dataValues.respondidas;
+			req.session.user.respondidasBien = user.dataValues.respondidasBien;
+			res.render('user/index',{user:req.session.user, errors: []});
+		});
+}

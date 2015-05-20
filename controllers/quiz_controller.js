@@ -137,7 +137,7 @@ exports.index = function(req, res, next) {
 	//Control de favoritos
 	if(req.session.user){
 		models.favourites.findAll({
-			where: {UserId: Number(req.session.user.id) },
+			where: {UserId: Number(req.session.user.id) }
 			//order: 'QuizId ASC'
 		}).then(function(a){
 			for(index = 0; index < a.length;index++){
@@ -192,11 +192,33 @@ exports.show = function(req,res) {
 
 //GEt /quizes/:id/answer
 exports.answer = function(req,res) {
-	var resultado = 'Incorrecto';
-		if(req.query.respuesta.toLowerCase() === req.quiz.respuesta.toLowerCase()){
+var resultado = 'Incorrecto';
+if(!req.query.respuesta){
+	req.query.respuesta = "";
+}
+if(req.session.user){
+
+	models.User.find({where: {
+			id: req.session.user.id
+		}}).then(function(user){
+			user.dataValues.respondidas++;
+				if(req.query.respuesta.toLowerCase() === req.quiz.respuesta.toLowerCase()){
+					resultado = 'Correcto';
+					user.dataValues.respondidasBien++;
+				}
+
+				user.save(
+					{fields:["respondidas","respondidasBien"]})
+					.then(function(){
+						res.render('quizes/answer',	{quiz: req.quiz, respuesta: resultado, errors: []});
+					})
+			});
+} else {
+	if(req.query.respuesta.toLowerCase() === req.quiz.respuesta.toLowerCase()){
 			resultado = 'Correcto';
-		} 
-		res.render('quizes/answer',	{quiz: req.quiz, respuesta: resultado, errors: []});
+		}
+	res.render('quizes/answer',	{quiz: req.quiz, respuesta: resultado, errors: []});
+	}
 };
 
 //Get /quizes/statistics

@@ -1,0 +1,16 @@
+<div class="col-xs-12">
+	<h1>Perfil de</h1>
+<%= user.username %>
+</div>
+<div class="col-xs-12">
+	<div class="barraEstadistica">
+		<div class="row">
+			<div class="col-xs-12">
+				<% var B = (user.respondidasBien * 100 / user.respondidas).toFixed(2); var C = 100 - B;%>
+				<div id="izqBar" class="sBar" style="width:<%=B%>%;"><h3><%=B%>%</h3></div>
+				<div id="drcBar" class="sBar" style="width:<%=C%>%;"><h3><%=C%>%</h3></div>
+			</div>
+		</div>
+	</div>
+	<p>asdasadas</p>
+</div>
