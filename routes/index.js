@@ -25,7 +25,7 @@ router.get('/logout',	sessionController.destroy);	// destruir sesion
 //Definicion de rutas de cuetna
 router.get('/user', userController.new); 			//formulario sign in
 router.post('/user', userController.create); 		//registra usuario
-router.get('/user/index',	sessionController.loginRequired, userController.index)
+router.get('/user/index',	sessionController.loginRequired, userController.index)//Pagina de perfil de usuario.
 router.get('/user/:userId(\\d+)/edit', 	sessionController.loginRequired, userController.ownershipRequired, userController.edit);
 router.put('/user/:userId(\\d+)', 		sessionController.loginRequired, userController.ownershipRequired, userController.update);
 router.delete('/user/:userId(\\d+)',	sessionController.loginRequired, userController.ownershipRequired, userController.destroy);
