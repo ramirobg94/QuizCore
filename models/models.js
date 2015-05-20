@@ -63,15 +63,15 @@ exports.favourites = favourites;
 sequelize.sync().then(function() {
 	//then(..) ejecuta el manejador una vez creada la tabla
 	User.count().then(function(count){
-		if(true) { //la tabla se inicializa solo si esta vacia
+		if(count === 0) { //la tabla se inicializa solo si esta vacia
 			User.bulkCreate(
-				[	{username: 'admin', password: 'contraseñaAdmin', isAdmin: true},
+				[	{username: 'admin', password: '1234', isAdmin: true},
 					{username: 'pepe', password: '5678'} //isAdmin por defecto vale false
 					]
 				).then(function(){
-					User.findAll().then(function(Users){
-						console.log(Users);
-					})
+				//	User.findAll().then(function(Users){
+				//		console.log(Users);
+				//	})
 					console.log("bien creado users");
 					Quiz.count().then(function(count){
 						if(count === 0) { 
